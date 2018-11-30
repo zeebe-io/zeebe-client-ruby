@@ -1,4 +1,4 @@
-# Zeebe Client Ruby
+# Zeebe Ruby Client
 
 [![Build Status](https://travis-ci.org/cmur2/zb-ruby-client.svg?branch=master)](https://travis-ci.org/cmur2/zb-ruby-client)
 
