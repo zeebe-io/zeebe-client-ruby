@@ -58,15 +58,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gateway_protocol.PublishMessageResponse" do
   end
-  add_message "gateway_protocol.CreateJobRequest" do
-    optional :jobType, :string, 1
-    optional :retries, :int32, 2
-    optional :customHeaders, :string, 3
-    optional :payload, :string, 4
-  end
-  add_message "gateway_protocol.CreateJobResponse" do
-    optional :key, :int64, 1
-  end
   add_message "gateway_protocol.UpdateJobRetriesRequest" do
     optional :jobKey, :int64, 1
     optional :retries, :int32, 2
@@ -76,6 +67,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gateway_protocol.FailJobRequest" do
     optional :jobKey, :int64, 1
     optional :retries, :int32, 2
+    optional :errorMessage, :string, 3
   end
   add_message "gateway_protocol.FailJobResponse" do
   end
@@ -153,6 +145,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gateway_protocol.ActivateJobsResponse" do
     repeated :jobs, :message, 1, "gateway_protocol.ActivatedJob"
   end
+  add_message "gateway_protocol.ResolveIncidentRequest" do
+    optional :incidentKey, :int64, 1
+  end
+  add_message "gateway_protocol.ResolveIncidentResponse" do
+  end
 end
 
 module Zeebe::Client::GatewayProtocol
@@ -168,8 +165,6 @@ module Zeebe::Client::GatewayProtocol
   DeployWorkflowResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployWorkflowResponse").msgclass
   PublishMessageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.PublishMessageRequest").msgclass
   PublishMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.PublishMessageResponse").msgclass
-  CreateJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateJobRequest").msgclass
-  CreateJobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateJobResponse").msgclass
   UpdateJobRetriesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesRequest").msgclass
   UpdateJobRetriesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesResponse").msgclass
   FailJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobRequest").msgclass
@@ -190,4 +185,6 @@ module Zeebe::Client::GatewayProtocol
   JobHeaders = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.JobHeaders").msgclass
   ActivatedJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivatedJob").msgclass
   ActivateJobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsResponse").msgclass
+  ResolveIncidentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ResolveIncidentRequest").msgclass
+  ResolveIncidentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ResolveIncidentResponse").msgclass
 end

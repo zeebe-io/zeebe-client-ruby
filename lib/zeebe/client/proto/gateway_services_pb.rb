@@ -17,7 +17,6 @@ module Zeebe::Client::GatewayProtocol
       rpc :Topology, TopologyRequest, TopologyResponse
       rpc :DeployWorkflow, DeployWorkflowRequest, DeployWorkflowResponse
       rpc :PublishMessage, PublishMessageRequest, PublishMessageResponse
-      rpc :CreateJob, CreateJobRequest, CreateJobResponse
       rpc :UpdateJobRetries, UpdateJobRetriesRequest, UpdateJobRetriesResponse
       rpc :FailJob, FailJobRequest, FailJobResponse
       rpc :CompleteJob, CompleteJobRequest, CompleteJobResponse
@@ -27,6 +26,7 @@ module Zeebe::Client::GatewayProtocol
       rpc :ActivateJobs, ActivateJobsRequest, stream(ActivateJobsResponse)
       rpc :ListWorkflows, ListWorkflowsRequest, ListWorkflowsResponse
       rpc :GetWorkflow, GetWorkflowRequest, GetWorkflowResponse
+      rpc :ResolveIncident, ResolveIncidentRequest, ResolveIncidentResponse
     end
 
     Stub = Service.rpc_stub_class
