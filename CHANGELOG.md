@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0
+
+OTHER:
+
+- project moved to the [Zeebe organization](https://github.com/zeebe-io) on Github as a "community extension"
+
 ## 0.1.0 (December 14, 2018)
 
 NEW FEATURES:

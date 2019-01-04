@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = 'Zeebe client containing a simple wrapper for the GRPC protocol used by Zeebe.io.'
   s.author = 'Christian Nicolai'
   s.email = 'chrnicolai@gmail.com'
-  s.homepage = 'https://github.com/cmur2/zb-ruby-client'
+  s.homepage = 'https://github.com/zeebe-io/zeebe-client-ruby'
   s.license = 'Apache-2.0'
 
   s.files = `git ls-files`.split($INPUT_RECORD_SEPARATOR)

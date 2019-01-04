@@ -1,6 +1,6 @@
 # Zeebe Ruby Client
 
-[![Build Status](https://travis-ci.org/cmur2/zb-ruby-client.svg?branch=master)](https://travis-ci.org/cmur2/zb-ruby-client)
+[![Build Status](https://travis-ci.org/zeebe-io/zeebe-client-ruby.svg?branch=master)](https://travis-ci.org/zeebe-io/zeebe-client-ruby/)
 
 [Zeebe](https://zeebe.io) client containing a simple wrapper for the GRPC protocol used by Zeebe.
 
@@ -29,3 +29,11 @@ To retrieve the latest GRPC proto from the Zeebe repository:
 ```
 wget -O proto/gateway.proto https://raw.githubusercontent.com/zeebe-io/zeebe/develop/gateway-protocol/src/main/proto/gateway.proto
 ```
+
+## Status
+
+This is a community extension for [Zeebe](https://zeebe.io) that will be maintained on a best effort basis.
+
+## License
+
+zeebe-client-ruby is licensed under the Apache License, Version 2.0. See LICENSE for more information.
