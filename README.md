@@ -37,3 +37,9 @@ This is a community extension for [Zeebe](https://zeebe.io) that will be maintai
 ## License
 
 zeebe-client-ruby is licensed under the Apache License, Version 2.0. See LICENSE for more information.
+
+## Code of Conduct
+
+This project adheres to the Contributor Covenant [Code of
+Conduct](/CODE_OF_CONDUCT.md). By participating, you are expected to uphold
+this code. Please report unacceptable behavior to code-of-conduct@zeebe.io.
