@@ -5,6 +5,7 @@
 OTHER:
 
 - project moved to the [Zeebe organization](https://github.com/zeebe-io) on Github as a "community extension"
+- adopt Zeebe Code of Conduct
 
 ## 0.1.0 (December 14, 2018)
 
