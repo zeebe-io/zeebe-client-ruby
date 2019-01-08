@@ -24,9 +24,17 @@ See the [changelog](CHANGELOG.md) before upgrading.
 
 The `gen-grpc.sh` script can be used to generate Ruby code for the Zeebe proto.
 
+To start Zeebe locally for running the integration tests use:
+
+```sh
+bundle exec rake zeebe:start
+bundle exec rake spec
+bundle exec rake zeebe:stop
+```
+
 To retrieve the latest GRPC proto from the Zeebe repository:
 
-```
+```sh
 wget -O proto/gateway.proto https://raw.githubusercontent.com/zeebe-io/zeebe/develop/gateway-protocol/src/main/proto/gateway.proto
 ```
 
