@@ -8,9 +8,5 @@ rvm:
 services:
   - docker
 
-before_install:
-  - gem uninstall -x -i /home/travis/.rvm/gems/ruby-2.3.7@global bundler || true
-  - gem install bundler -v '< 2'
-
 script:
   - bundle exec rake travis
