@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+NEW FEATURES:
+
+- add support for [Zeebe 0.15.0-alpha1](https://github.com/zeebe-io/zeebe/releases/tag/0.15.0-alpha1)
+
 ## 0.2.0 (January 25, 2019)
 
 OTHER:
