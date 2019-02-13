@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0
+## 0.3.0 (February 13, 2019)
 
 NEW FEATURES:
 
