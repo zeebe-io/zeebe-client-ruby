@@ -25,6 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rubocop', '~> 0.64.0'
+  s.add_development_dependency 'rubocop', '~> 0.65.0'
   s.add_development_dependency 'bundler-audit'
 end
