@@ -47,7 +47,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :workflowKey, :int64, 1
     optional :bpmnProcessId, :string, 2
     optional :version, :int32, 3
-    optional :payload, :string, 4
+    optional :variables, :string, 4
   end
   add_message "gateway_protocol.CreateWorkflowInstanceResponse" do
     optional :workflowKey, :int64, 1
@@ -145,11 +145,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gateway_protocol.UpdateJobRetriesResponse" do
   end
-  add_message "gateway_protocol.UpdateWorkflowInstancePayloadRequest" do
+  add_message "gateway_protocol.SetVariablesRequest" do
     optional :elementInstanceKey, :int64, 1
-    optional :payload, :string, 2
+    optional :variables, :string, 2
+    optional :local, :bool, 3
   end
-  add_message "gateway_protocol.UpdateWorkflowInstancePayloadResponse" do
+  add_message "gateway_protocol.SetVariablesResponse" do
   end
 end
 
@@ -186,6 +187,6 @@ module Zeebe::Client::GatewayProtocol
   Partition::PartitionBrokerRole = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Partition.PartitionBrokerRole").enummodule
   UpdateJobRetriesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesRequest").msgclass
   UpdateJobRetriesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesResponse").msgclass
-  UpdateWorkflowInstancePayloadRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateWorkflowInstancePayloadRequest").msgclass
-  UpdateWorkflowInstancePayloadResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateWorkflowInstancePayloadResponse").msgclass
+  SetVariablesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.SetVariablesRequest").msgclass
+  SetVariablesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.SetVariablesResponse").msgclass
 end

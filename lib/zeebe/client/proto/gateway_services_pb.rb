@@ -62,8 +62,8 @@ module Zeebe::Client::GatewayProtocol
       # start event can be started manually.
       #
       # INVALID_ARGUMENT:
-      # - the given payload is not a valid JSON document; all payloads are expected to be
-      # valid JSON documents where the root node is an object.
+      # - the given variables argument is not a valid JSON document; it is expected to be a valid
+      # JSON document where the root node is an object.
       rpc :CreateWorkflowInstance, CreateWorkflowInstanceRequest, CreateWorkflowInstanceResponse
       #
       # Deploys one or more workflows to Zeebe. Note that this is an atomic call,
@@ -119,13 +119,24 @@ module Zeebe::Client::GatewayProtocol
       rpc :PublishMessage, PublishMessageRequest, PublishMessageResponse
       #
       # Resolves a given incident. This simply marks the incident as resolved; most likely a call to
-      # UpdateJobRetries or UpdateWorkflowInstancePayload will be necessary to actually resolve the
+      # UpdateJobRetries or SetVariables will be necessary to actually resolve the
       # problem, following by this call.
       #
       # Errors:
       # NOT_FOUND:
       # - no incident with the given key exists
       rpc :ResolveIncident, ResolveIncidentRequest, ResolveIncidentResponse
+      #
+      # Updates all the variables of a particular scope (e.g. workflow instance, flow element instance)
+      # from the given JSON document.
+      #
+      # Errors:
+      # NOT_FOUND:
+      # - no element with the given elementInstanceKey exists
+      # INVALID_ARGUMENT:
+      # - the given variables document is not a valid JSON document; valid documents are expected to
+      # be JSON documents where the root node is an object.
+      rpc :SetVariables, SetVariablesRequest, SetVariablesResponse
       #
       # Obtains the current topology of the cluster the gateway is part of.
       rpc :Topology, TopologyRequest, TopologyResponse
@@ -140,16 +151,6 @@ module Zeebe::Client::GatewayProtocol
       # INVALID_ARGUMENT:
       # - retries is not greater than 0
       rpc :UpdateJobRetries, UpdateJobRetriesRequest, UpdateJobRetriesResponse
-      #
-      # Updates all the variables in the workflow instance scope from the given JSON document.
-      #
-      # Errors:
-      # NOT_FOUND:
-      # - no element with the given elementInstanceKey exists
-      # INVALID_ARGUMENT:
-      # - the given payload is not a valid JSON document; all payloads are expected to be
-      # valid JSON documents where the root node is an object.
-      rpc :UpdateWorkflowInstancePayload, UpdateWorkflowInstancePayloadRequest, UpdateWorkflowInstancePayloadResponse
     end
 
     Stub = Service.rpc_stub_class
