@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1
+
+NEW FEATURES:
+
+- add support for [Zeebe 0.16.4](https://github.com/zeebe-io/zeebe/releases/tag/0.16.4)
+
 ## 0.4.0 (March 12, 2019)
 
 NEW FEATURES:
