@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.1
+## 0.4.1 (March 25, 2019)
 
 NEW FEATURES:
 
