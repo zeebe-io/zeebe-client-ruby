@@ -8,7 +8,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :type, :string, 1
     optional :worker, :string, 2
     optional :timeout, :int64, 3
-    optional :amount, :int32, 4
+    optional :maxJobsToActivate, :int32, 4
     repeated :fetchVariable, :string, 5
   end
   add_message "gateway_protocol.ActivateJobsResponse" do
@@ -22,7 +22,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :worker, :string, 5
     optional :retries, :int32, 6
     optional :deadline, :int64, 7
-    optional :payload, :string, 8
+    optional :variables, :string, 8
   end
   add_message "gateway_protocol.JobHeaders" do
     optional :workflowInstanceKey, :int64, 1
@@ -39,7 +39,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gateway_protocol.CompleteJobRequest" do
     optional :jobKey, :int64, 1
-    optional :payload, :string, 2
+    optional :variables, :string, 2
   end
   add_message "gateway_protocol.CompleteJobResponse" do
   end
@@ -108,7 +108,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :correlationKey, :string, 2
     optional :timeToLive, :int64, 3
     optional :messageId, :string, 4
-    optional :payload, :string, 5
+    optional :variables, :string, 5
   end
   add_message "gateway_protocol.PublishMessageResponse" do
   end

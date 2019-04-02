@@ -13,7 +13,7 @@ Install the gem:
 Run a Zeebe instance locally:
 
 ```sh
-docker run -it --rm -p 26500:26500 camunda/zeebe:0.16.4
+docker run -it --rm -p 26500:26500 camunda/zeebe:0.17.0
 ```
 
 And then try the available [demo script](examples/demo.rb).

@@ -15,15 +15,15 @@ module Zeebe::Client::GatewayProtocol
       self.service_name = 'gateway_protocol.Gateway'
 
       #
-      # Iterates through all known partitions in a round-robin and activates up to the requested amount
-      # of jobs and streams them back to the client as they are activated.
+      # Iterates through all known partitions round-robin and activates up to the requested
+      # maximum and streams them back to the client as they are activated.
       #
       # Errors:
       # INVALID_ARGUMENT:
       # - type is blank (empty string, null)
       # - worker is blank (empty string, null)
       # - timeout less than 1
-      # - amount is less than 1
+      # - maxJobsToActivate is less than 1
       rpc :ActivateJobs, ActivateJobsRequest, stream(ActivateJobsResponse)
       #
       # Cancels a running workflow instance
@@ -33,7 +33,7 @@ module Zeebe::Client::GatewayProtocol
       # - no workflow instance exists with the given key
       rpc :CancelWorkflowInstance, CancelWorkflowInstanceRequest, CancelWorkflowInstanceResponse
       #
-      # Completes a job with the given payload, which allows completing the associated service task.
+      # Completes a job with the given variables, which allows completing the associated service task.
       #
       # Errors:
       # NOT_FOUND:
