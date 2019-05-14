@@ -4,153 +4,155 @@
 require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_message "gateway_protocol.ActivateJobsRequest" do
-    optional :type, :string, 1
-    optional :worker, :string, 2
-    optional :timeout, :int64, 3
-    optional :maxJobsToActivate, :int32, 4
-    repeated :fetchVariable, :string, 5
-  end
-  add_message "gateway_protocol.ActivateJobsResponse" do
-    repeated :jobs, :message, 1, "gateway_protocol.ActivatedJob"
-  end
-  add_message "gateway_protocol.ActivatedJob" do
-    optional :key, :int64, 1
-    optional :type, :string, 2
-    optional :jobHeaders, :message, 3, "gateway_protocol.JobHeaders"
-    optional :customHeaders, :string, 4
-    optional :worker, :string, 5
-    optional :retries, :int32, 6
-    optional :deadline, :int64, 7
-    optional :variables, :string, 8
-  end
-  add_message "gateway_protocol.JobHeaders" do
-    optional :workflowInstanceKey, :int64, 1
-    optional :bpmnProcessId, :string, 2
-    optional :workflowDefinitionVersion, :int32, 3
-    optional :workflowKey, :int64, 4
-    optional :elementId, :string, 5
-    optional :elementInstanceKey, :int64, 6
-  end
-  add_message "gateway_protocol.CancelWorkflowInstanceRequest" do
-    optional :workflowInstanceKey, :int64, 1
-  end
-  add_message "gateway_protocol.CancelWorkflowInstanceResponse" do
-  end
-  add_message "gateway_protocol.CompleteJobRequest" do
-    optional :jobKey, :int64, 1
-    optional :variables, :string, 2
-  end
-  add_message "gateway_protocol.CompleteJobResponse" do
-  end
-  add_message "gateway_protocol.CreateWorkflowInstanceRequest" do
-    optional :workflowKey, :int64, 1
-    optional :bpmnProcessId, :string, 2
-    optional :version, :int32, 3
-    optional :variables, :string, 4
-  end
-  add_message "gateway_protocol.CreateWorkflowInstanceResponse" do
-    optional :workflowKey, :int64, 1
-    optional :bpmnProcessId, :string, 2
-    optional :version, :int32, 3
-    optional :workflowInstanceKey, :int64, 5
-  end
-  add_message "gateway_protocol.DeployWorkflowRequest" do
-    repeated :workflows, :message, 1, "gateway_protocol.WorkflowRequestObject"
-  end
-  add_message "gateway_protocol.WorkflowRequestObject" do
-    optional :name, :string, 1
-    optional :type, :enum, 2, "gateway_protocol.WorkflowRequestObject.ResourceType"
-    optional :definition, :bytes, 3
-  end
-  add_enum "gateway_protocol.WorkflowRequestObject.ResourceType" do
-    value :FILE, 0
-    value :BPMN, 1
-    value :YAML, 2
-  end
-  add_message "gateway_protocol.DeployWorkflowResponse" do
-    optional :key, :int64, 1
-    repeated :workflows, :message, 2, "gateway_protocol.WorkflowMetadata"
-  end
-  add_message "gateway_protocol.WorkflowMetadata" do
-    optional :bpmnProcessId, :string, 1
-    optional :version, :int32, 2
-    optional :workflowKey, :int64, 3
-    optional :resourceName, :string, 4
-  end
-  add_message "gateway_protocol.FailJobRequest" do
-    optional :jobKey, :int64, 1
-    optional :retries, :int32, 2
-    optional :errorMessage, :string, 3
-  end
-  add_message "gateway_protocol.FailJobResponse" do
-  end
-  add_message "gateway_protocol.GetWorkflowRequest" do
-    optional :workflowKey, :int64, 1
-    optional :version, :int32, 2
-    optional :bpmnProcessId, :string, 3
-  end
-  add_message "gateway_protocol.GetWorkflowResponse" do
-    optional :workflowKey, :int64, 1
-    optional :version, :int32, 2
-    optional :bpmnProcessId, :string, 3
-    optional :resourceName, :string, 4
-    optional :bpmnXml, :string, 5
-  end
-  add_message "gateway_protocol.ListWorkflowsRequest" do
-    optional :bpmnProcessId, :string, 1
-  end
-  add_message "gateway_protocol.ListWorkflowsResponse" do
-    repeated :workflows, :message, 1, "gateway_protocol.WorkflowMetadata"
-  end
-  add_message "gateway_protocol.PublishMessageRequest" do
-    optional :name, :string, 1
-    optional :correlationKey, :string, 2
-    optional :timeToLive, :int64, 3
-    optional :messageId, :string, 4
-    optional :variables, :string, 5
-  end
-  add_message "gateway_protocol.PublishMessageResponse" do
-  end
-  add_message "gateway_protocol.ResolveIncidentRequest" do
-    optional :incidentKey, :int64, 1
-  end
-  add_message "gateway_protocol.ResolveIncidentResponse" do
-  end
-  add_message "gateway_protocol.TopologyRequest" do
-  end
-  add_message "gateway_protocol.TopologyResponse" do
-    repeated :brokers, :message, 1, "gateway_protocol.BrokerInfo"
-    optional :clusterSize, :int32, 2
-    optional :partitionsCount, :int32, 3
-    optional :replicationFactor, :int32, 4
-  end
-  add_message "gateway_protocol.BrokerInfo" do
-    optional :nodeId, :int32, 1
-    optional :host, :string, 2
-    optional :port, :int32, 3
-    repeated :partitions, :message, 4, "gateway_protocol.Partition"
-  end
-  add_message "gateway_protocol.Partition" do
-    optional :partitionId, :int32, 1
-    optional :role, :enum, 3, "gateway_protocol.Partition.PartitionBrokerRole"
-  end
-  add_enum "gateway_protocol.Partition.PartitionBrokerRole" do
-    value :LEADER, 0
-    value :FOLLOWER, 1
-  end
-  add_message "gateway_protocol.UpdateJobRetriesRequest" do
-    optional :jobKey, :int64, 1
-    optional :retries, :int32, 2
-  end
-  add_message "gateway_protocol.UpdateJobRetriesResponse" do
-  end
-  add_message "gateway_protocol.SetVariablesRequest" do
-    optional :elementInstanceKey, :int64, 1
-    optional :variables, :string, 2
-    optional :local, :bool, 3
-  end
-  add_message "gateway_protocol.SetVariablesResponse" do
+  add_file("proto/gateway.proto", :syntax => :proto3) do
+    add_message "gateway_protocol.ActivateJobsRequest" do
+      optional :type, :string, 1
+      optional :worker, :string, 2
+      optional :timeout, :int64, 3
+      optional :maxJobsToActivate, :int32, 4
+      repeated :fetchVariable, :string, 5
+    end
+    add_message "gateway_protocol.ActivateJobsResponse" do
+      repeated :jobs, :message, 1, "gateway_protocol.ActivatedJob"
+    end
+    add_message "gateway_protocol.ActivatedJob" do
+      optional :key, :int64, 1
+      optional :type, :string, 2
+      optional :jobHeaders, :message, 3, "gateway_protocol.JobHeaders"
+      optional :customHeaders, :string, 4
+      optional :worker, :string, 5
+      optional :retries, :int32, 6
+      optional :deadline, :int64, 7
+      optional :variables, :string, 8
+    end
+    add_message "gateway_protocol.JobHeaders" do
+      optional :workflowInstanceKey, :int64, 1
+      optional :bpmnProcessId, :string, 2
+      optional :workflowDefinitionVersion, :int32, 3
+      optional :workflowKey, :int64, 4
+      optional :elementId, :string, 5
+      optional :elementInstanceKey, :int64, 6
+    end
+    add_message "gateway_protocol.CancelWorkflowInstanceRequest" do
+      optional :workflowInstanceKey, :int64, 1
+    end
+    add_message "gateway_protocol.CancelWorkflowInstanceResponse" do
+    end
+    add_message "gateway_protocol.CompleteJobRequest" do
+      optional :jobKey, :int64, 1
+      optional :variables, :string, 2
+    end
+    add_message "gateway_protocol.CompleteJobResponse" do
+    end
+    add_message "gateway_protocol.CreateWorkflowInstanceRequest" do
+      optional :workflowKey, :int64, 1
+      optional :bpmnProcessId, :string, 2
+      optional :version, :int32, 3
+      optional :variables, :string, 4
+    end
+    add_message "gateway_protocol.CreateWorkflowInstanceResponse" do
+      optional :workflowKey, :int64, 1
+      optional :bpmnProcessId, :string, 2
+      optional :version, :int32, 3
+      optional :workflowInstanceKey, :int64, 5
+    end
+    add_message "gateway_protocol.DeployWorkflowRequest" do
+      repeated :workflows, :message, 1, "gateway_protocol.WorkflowRequestObject"
+    end
+    add_message "gateway_protocol.WorkflowRequestObject" do
+      optional :name, :string, 1
+      optional :type, :enum, 2, "gateway_protocol.WorkflowRequestObject.ResourceType"
+      optional :definition, :bytes, 3
+    end
+    add_enum "gateway_protocol.WorkflowRequestObject.ResourceType" do
+      value :FILE, 0
+      value :BPMN, 1
+      value :YAML, 2
+    end
+    add_message "gateway_protocol.DeployWorkflowResponse" do
+      optional :key, :int64, 1
+      repeated :workflows, :message, 2, "gateway_protocol.WorkflowMetadata"
+    end
+    add_message "gateway_protocol.WorkflowMetadata" do
+      optional :bpmnProcessId, :string, 1
+      optional :version, :int32, 2
+      optional :workflowKey, :int64, 3
+      optional :resourceName, :string, 4
+    end
+    add_message "gateway_protocol.FailJobRequest" do
+      optional :jobKey, :int64, 1
+      optional :retries, :int32, 2
+      optional :errorMessage, :string, 3
+    end
+    add_message "gateway_protocol.FailJobResponse" do
+    end
+    add_message "gateway_protocol.GetWorkflowRequest" do
+      optional :workflowKey, :int64, 1
+      optional :version, :int32, 2
+      optional :bpmnProcessId, :string, 3
+    end
+    add_message "gateway_protocol.GetWorkflowResponse" do
+      optional :workflowKey, :int64, 1
+      optional :version, :int32, 2
+      optional :bpmnProcessId, :string, 3
+      optional :resourceName, :string, 4
+      optional :bpmnXml, :string, 5
+    end
+    add_message "gateway_protocol.ListWorkflowsRequest" do
+      optional :bpmnProcessId, :string, 1
+    end
+    add_message "gateway_protocol.ListWorkflowsResponse" do
+      repeated :workflows, :message, 1, "gateway_protocol.WorkflowMetadata"
+    end
+    add_message "gateway_protocol.PublishMessageRequest" do
+      optional :name, :string, 1
+      optional :correlationKey, :string, 2
+      optional :timeToLive, :int64, 3
+      optional :messageId, :string, 4
+      optional :variables, :string, 5
+    end
+    add_message "gateway_protocol.PublishMessageResponse" do
+    end
+    add_message "gateway_protocol.ResolveIncidentRequest" do
+      optional :incidentKey, :int64, 1
+    end
+    add_message "gateway_protocol.ResolveIncidentResponse" do
+    end
+    add_message "gateway_protocol.TopologyRequest" do
+    end
+    add_message "gateway_protocol.TopologyResponse" do
+      repeated :brokers, :message, 1, "gateway_protocol.BrokerInfo"
+      optional :clusterSize, :int32, 2
+      optional :partitionsCount, :int32, 3
+      optional :replicationFactor, :int32, 4
+    end
+    add_message "gateway_protocol.BrokerInfo" do
+      optional :nodeId, :int32, 1
+      optional :host, :string, 2
+      optional :port, :int32, 3
+      repeated :partitions, :message, 4, "gateway_protocol.Partition"
+    end
+    add_message "gateway_protocol.Partition" do
+      optional :partitionId, :int32, 1
+      optional :role, :enum, 3, "gateway_protocol.Partition.PartitionBrokerRole"
+    end
+    add_enum "gateway_protocol.Partition.PartitionBrokerRole" do
+      value :LEADER, 0
+      value :FOLLOWER, 1
+    end
+    add_message "gateway_protocol.UpdateJobRetriesRequest" do
+      optional :jobKey, :int64, 1
+      optional :retries, :int32, 2
+    end
+    add_message "gateway_protocol.UpdateJobRetriesResponse" do
+    end
+    add_message "gateway_protocol.SetVariablesRequest" do
+      optional :elementInstanceKey, :int64, 1
+      optional :variables, :string, 2
+      optional :local, :bool, 3
+    end
+    add_message "gateway_protocol.SetVariablesResponse" do
+    end
   end
 end
 
