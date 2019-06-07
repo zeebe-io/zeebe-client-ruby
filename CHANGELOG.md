@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.6.0
+## 0.6.0 (June 7, 2019)
 
 - support Ruby 2.6
 - add support for [Zeebe 0.18.0](https://github.com/zeebe-io/zeebe/releases/tag/0.18.0)
