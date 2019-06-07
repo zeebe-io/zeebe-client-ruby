@@ -3,6 +3,7 @@
 ## 0.6.0
 
 - support Ruby 2.6
+- add support for [Zeebe 0.18.0](https://github.com/zeebe-io/zeebe/releases/tag/0.18.0)
 
 ## 0.5.0 (April 2, 2019)
 

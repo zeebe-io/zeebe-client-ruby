@@ -86,24 +86,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "gateway_protocol.FailJobResponse" do
     end
-    add_message "gateway_protocol.GetWorkflowRequest" do
-      optional :workflowKey, :int64, 1
-      optional :version, :int32, 2
-      optional :bpmnProcessId, :string, 3
-    end
-    add_message "gateway_protocol.GetWorkflowResponse" do
-      optional :workflowKey, :int64, 1
-      optional :version, :int32, 2
-      optional :bpmnProcessId, :string, 3
-      optional :resourceName, :string, 4
-      optional :bpmnXml, :string, 5
-    end
-    add_message "gateway_protocol.ListWorkflowsRequest" do
-      optional :bpmnProcessId, :string, 1
-    end
-    add_message "gateway_protocol.ListWorkflowsResponse" do
-      repeated :workflows, :message, 1, "gateway_protocol.WorkflowMetadata"
-    end
     add_message "gateway_protocol.PublishMessageRequest" do
       optional :name, :string, 1
       optional :correlationKey, :string, 2
@@ -174,10 +156,6 @@ module Zeebe::Client::GatewayProtocol
   WorkflowMetadata = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowMetadata").msgclass
   FailJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobRequest").msgclass
   FailJobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobResponse").msgclass
-  GetWorkflowRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.GetWorkflowRequest").msgclass
-  GetWorkflowResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.GetWorkflowResponse").msgclass
-  ListWorkflowsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ListWorkflowsRequest").msgclass
-  ListWorkflowsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ListWorkflowsResponse").msgclass
   PublishMessageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.PublishMessageRequest").msgclass
   PublishMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.PublishMessageResponse").msgclass
   ResolveIncidentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ResolveIncidentRequest").msgclass

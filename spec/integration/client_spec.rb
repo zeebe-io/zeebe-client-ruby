@@ -12,9 +12,4 @@ describe Zeebe::Client do
     expect(topology.clusterSize).to eq(1)
     expect(topology.replicationFactor).to eq(1)
   end
-
-  it 'lists workflows' do
-    workflows = client.list_workflows(Zeebe::Client::GatewayProtocol::ListWorkflowsRequest.new).workflows
-    expect(workflows).to eq([])
-  end
 end

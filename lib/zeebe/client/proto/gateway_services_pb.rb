@@ -92,24 +92,6 @@ module Zeebe::Client::GatewayProtocol
       # - the job is already in a failed state, i.e. ran out of retries
       rpc :FailJob, FailJobRequest, FailJobResponse
       #
-      # Fetches the workflow definition either by workflow key, or BPMN process ID and version.
-      # At least one of workflowKey or bpmnProcessId must be specified.
-      #
-      # Errors:
-      # NOT_FOUND:
-      # - no workflow with the given key exists (if workflowKey was given)
-      # - no workflow with the given process ID exists (if bpmnProcessId was given but version was -1)
-      # - no workflow with the given process ID and version exists (if both bpmnProcessId and version were given)
-      rpc :GetWorkflow, GetWorkflowRequest, GetWorkflowResponse
-      #
-      # Lists all workflows matching the request criteria currently deployed in the cluster.
-      #
-      # Errors:
-      # NOT_FOUND:
-      # - no workflows have been deployed yet (if no bpmnProcessId was given)
-      # - no workflow with the given process ID exists (if bpmnProcessId was given)
-      rpc :ListWorkflows, ListWorkflowsRequest, ListWorkflowsResponse
-      #
       # Publishes a single message. Messages are published to specific partitions computed from their
       # correlation keys.
       #
