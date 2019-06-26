@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'grpc', '>= 1.19', '< 1.21'
 
-  s.add_development_dependency 'grpc-tools', '~> 1.20.0'
+  s.add_development_dependency 'grpc-tools', '~> 1.21.0'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
