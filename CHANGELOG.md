@@ -2,7 +2,7 @@
 
 ## 0.7.0
 
-- add support for [Zeebe 0.19.0](https://github.com/zeebe-io/zeebe/releases/tag/0.19.0)
+- add support for [Zeebe 0.20.0](https://github.com/zeebe-io/zeebe/releases/tag/0.20.0)
 
 ## 0.6.0 (June 7, 2019)
 
@@ -49,4 +49,3 @@ NEW FEATURES:
 NEW FEATURES:
 
 - add support for Zeebe 0.13.1
-
