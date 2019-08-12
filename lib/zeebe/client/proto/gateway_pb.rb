@@ -18,20 +18,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "gateway_protocol.ActivatedJob" do
       optional :key, :int64, 1
       optional :type, :string, 2
-      optional :jobHeaders, :message, 3, "gateway_protocol.JobHeaders"
-      optional :customHeaders, :string, 4
-      optional :worker, :string, 5
-      optional :retries, :int32, 6
-      optional :deadline, :int64, 7
-      optional :variables, :string, 8
-    end
-    add_message "gateway_protocol.JobHeaders" do
-      optional :workflowInstanceKey, :int64, 1
-      optional :bpmnProcessId, :string, 2
-      optional :workflowDefinitionVersion, :int32, 3
-      optional :workflowKey, :int64, 4
-      optional :elementId, :string, 5
-      optional :elementInstanceKey, :int64, 6
+      optional :workflowInstanceKey, :int64, 3
+      optional :bpmnProcessId, :string, 4
+      optional :workflowDefinitionVersion, :int32, 5
+      optional :workflowKey, :int64, 6
+      optional :elementId, :string, 7
+      optional :elementInstanceKey, :int64, 8
+      optional :customHeaders, :string, 9
+      optional :worker, :string, 10
+      optional :retries, :int32, 11
+      optional :deadline, :int64, 12
+      optional :variables, :string, 13
     end
     add_message "gateway_protocol.CancelWorkflowInstanceRequest" do
       optional :workflowInstanceKey, :int64, 1
@@ -54,7 +51,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :workflowKey, :int64, 1
       optional :bpmnProcessId, :string, 2
       optional :version, :int32, 3
-      optional :workflowInstanceKey, :int64, 5
+      optional :workflowInstanceKey, :int64, 4
     end
     add_message "gateway_protocol.DeployWorkflowRequest" do
       repeated :workflows, :message, 1, "gateway_protocol.WorkflowRequestObject"
@@ -116,7 +113,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "gateway_protocol.Partition" do
       optional :partitionId, :int32, 1
-      optional :role, :enum, 3, "gateway_protocol.Partition.PartitionBrokerRole"
+      optional :role, :enum, 2, "gateway_protocol.Partition.PartitionBrokerRole"
     end
     add_enum "gateway_protocol.Partition.PartitionBrokerRole" do
       value :LEADER, 0
@@ -142,7 +139,6 @@ module Zeebe::Client::GatewayProtocol
   ActivateJobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsRequest").msgclass
   ActivateJobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsResponse").msgclass
   ActivatedJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivatedJob").msgclass
-  JobHeaders = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.JobHeaders").msgclass
   CancelWorkflowInstanceRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelWorkflowInstanceRequest").msgclass
   CancelWorkflowInstanceResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelWorkflowInstanceResponse").msgclass
   CompleteJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CompleteJobRequest").msgclass
