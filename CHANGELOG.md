@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.7.0
+## 0.7.0 (August 12, 2019)
 
 - add support for [Zeebe 0.20.0](https://github.com/zeebe-io/zeebe/releases/tag/0.20.0)
 
