@@ -11,6 +11,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :timeout, :int64, 3
       optional :maxJobsToActivate, :int32, 4
       repeated :fetchVariable, :string, 5
+      optional :requestTimeout, :int64, 6
     end
     add_message "gateway_protocol.ActivateJobsResponse" do
       repeated :jobs, :message, 1, "gateway_protocol.ActivatedJob"

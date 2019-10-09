@@ -2,7 +2,7 @@
 
 ## 0.8.0
 
-- add support for [Zeebe 0.20.1](https://github.com/zeebe-io/zeebe/releases/tag/0.20.1)
+- add support for [Zeebe 0.21.1](https://github.com/zeebe-io/zeebe/releases/tag/0.21.1)
 
 ## 0.7.0 (August 12, 2019)
 
