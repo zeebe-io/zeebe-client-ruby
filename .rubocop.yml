@@ -9,9 +9,6 @@ AllCops:
 Gemspec/OrderedDependencies:
   Enabled: false
 
-Layout/AlignHash:
-  Enabled: false
-
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
@@ -19,7 +16,10 @@ Layout/EmptyLineAfterGuardClause:
 Layout/EmptyLinesAroundArguments:
   Enabled: false
 
-Layout/LeadingBlankLines:
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/LeadingEmptyLines:
   Enabled: false
 
 Layout/SpaceInsideHashLiteralBraces:
@@ -46,10 +46,10 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Enabled: false
 
-Naming/UncommunicativeMethodParamName:
+Naming/MemoizedInstanceVariableName:
   Enabled: false
 
-Naming/MemoizedInstanceVariableName:
+Naming/MethodParameterName:
   Enabled: false
 
 Style/ConditionalAssignment:
