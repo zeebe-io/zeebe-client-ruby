@@ -54,6 +54,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :version, :int32, 3
       optional :workflowInstanceKey, :int64, 4
     end
+    add_message "gateway_protocol.CreateWorkflowInstanceWithResultRequest" do
+      optional :request, :message, 1, "gateway_protocol.CreateWorkflowInstanceRequest"
+      optional :requestTimeout, :int64, 2
+      repeated :fetchVariables, :string, 3
+    end
+    add_message "gateway_protocol.CreateWorkflowInstanceWithResultResponse" do
+      optional :workflowKey, :int64, 1
+      optional :bpmnProcessId, :string, 2
+      optional :version, :int32, 3
+      optional :workflowInstanceKey, :int64, 4
+      optional :variables, :string, 5
+    end
     add_message "gateway_protocol.DeployWorkflowRequest" do
       repeated :workflows, :message, 1, "gateway_protocol.WorkflowRequestObject"
     end
@@ -83,6 +95,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :errorMessage, :string, 3
     end
     add_message "gateway_protocol.FailJobResponse" do
+    end
+    add_message "gateway_protocol.ThrowErrorRequest" do
+      optional :jobKey, :int64, 1
+      optional :errorCode, :string, 2
+      optional :errorMessage, :string, 3
+    end
+    add_message "gateway_protocol.ThrowErrorResponse" do
     end
     add_message "gateway_protocol.PublishMessageRequest" do
       optional :name, :string, 1
@@ -132,38 +151,43 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :local, :bool, 3
     end
     add_message "gateway_protocol.SetVariablesResponse" do
+      optional :key, :int64, 1
     end
   end
 end
 
 module Zeebe::Client::GatewayProtocol
-  ActivateJobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsRequest").msgclass
-  ActivateJobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsResponse").msgclass
-  ActivatedJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivatedJob").msgclass
-  CancelWorkflowInstanceRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelWorkflowInstanceRequest").msgclass
-  CancelWorkflowInstanceResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelWorkflowInstanceResponse").msgclass
-  CompleteJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CompleteJobRequest").msgclass
-  CompleteJobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CompleteJobResponse").msgclass
-  CreateWorkflowInstanceRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceRequest").msgclass
-  CreateWorkflowInstanceResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceResponse").msgclass
-  DeployWorkflowRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployWorkflowRequest").msgclass
-  WorkflowRequestObject = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowRequestObject").msgclass
-  WorkflowRequestObject::ResourceType = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowRequestObject.ResourceType").enummodule
-  DeployWorkflowResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployWorkflowResponse").msgclass
-  WorkflowMetadata = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowMetadata").msgclass
-  FailJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobRequest").msgclass
-  FailJobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobResponse").msgclass
-  PublishMessageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.PublishMessageRequest").msgclass
-  PublishMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.PublishMessageResponse").msgclass
-  ResolveIncidentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ResolveIncidentRequest").msgclass
-  ResolveIncidentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ResolveIncidentResponse").msgclass
-  TopologyRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.TopologyRequest").msgclass
-  TopologyResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.TopologyResponse").msgclass
-  BrokerInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.BrokerInfo").msgclass
-  Partition = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Partition").msgclass
-  Partition::PartitionBrokerRole = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Partition.PartitionBrokerRole").enummodule
-  UpdateJobRetriesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesRequest").msgclass
-  UpdateJobRetriesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesResponse").msgclass
-  SetVariablesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.SetVariablesRequest").msgclass
-  SetVariablesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.SetVariablesResponse").msgclass
+  ActivateJobsRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsRequest").msgclass
+  ActivateJobsResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsResponse").msgclass
+  ActivatedJob = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivatedJob").msgclass
+  CancelWorkflowInstanceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelWorkflowInstanceRequest").msgclass
+  CancelWorkflowInstanceResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelWorkflowInstanceResponse").msgclass
+  CompleteJobRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CompleteJobRequest").msgclass
+  CompleteJobResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CompleteJobResponse").msgclass
+  CreateWorkflowInstanceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceRequest").msgclass
+  CreateWorkflowInstanceResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceResponse").msgclass
+  CreateWorkflowInstanceWithResultRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceWithResultRequest").msgclass
+  CreateWorkflowInstanceWithResultResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceWithResultResponse").msgclass
+  DeployWorkflowRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployWorkflowRequest").msgclass
+  WorkflowRequestObject = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowRequestObject").msgclass
+  WorkflowRequestObject::ResourceType = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowRequestObject.ResourceType").enummodule
+  DeployWorkflowResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployWorkflowResponse").msgclass
+  WorkflowMetadata = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowMetadata").msgclass
+  FailJobRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobRequest").msgclass
+  FailJobResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobResponse").msgclass
+  ThrowErrorRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ThrowErrorRequest").msgclass
+  ThrowErrorResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ThrowErrorResponse").msgclass
+  PublishMessageRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.PublishMessageRequest").msgclass
+  PublishMessageResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.PublishMessageResponse").msgclass
+  ResolveIncidentRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ResolveIncidentRequest").msgclass
+  ResolveIncidentResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ResolveIncidentResponse").msgclass
+  TopologyRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.TopologyRequest").msgclass
+  TopologyResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.TopologyResponse").msgclass
+  BrokerInfo = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.BrokerInfo").msgclass
+  Partition = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Partition").msgclass
+  Partition::PartitionBrokerRole = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Partition.PartitionBrokerRole").enummodule
+  UpdateJobRetriesRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesRequest").msgclass
+  UpdateJobRetriesResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesResponse").msgclass
+  SetVariablesRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.SetVariablesRequest").msgclass
+  SetVariablesResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.SetVariablesResponse").msgclass
 end

@@ -113,6 +113,34 @@ message CreateWorkflowInstanceResponse {
   int64 workflowInstanceKey = 4;
 }
 
+message CreateWorkflowInstanceWithResultRequest {
+  CreateWorkflowInstanceRequest request = 1;
+  // timeout in milliseconds. the request will be closed if the workflow is not completed
+  // before the requestTimeout.
+  // if requestTimeout = 0, uses the generic requestTimeout configured in the gateway.
+  int64 requestTimeout = 2;
+  // list of names of variables to be included in `CreateWorkflowInstanceWithResultResponse.variables`
+  // if empty, all visible variables in the root scope will be returned.
+  repeated string fetchVariables = 3;
+}
+
+message CreateWorkflowInstanceWithResultResponse {
+  // the key of the workflow definition which was used to create the workflow instance
+  int64 workflowKey = 1;
+  // the BPMN process ID of the workflow definition which was used to create the workflow
+  // instance
+  string bpmnProcessId = 2;
+  // the version of the workflow definition which was used to create the workflow instance
+  int32 version = 3;
+  // the unique identifier of the created workflow instance; to be used wherever a request
+  // needs a workflow instance key (e.g. CancelWorkflowInstanceRequest)
+  int64 workflowInstanceKey = 4;
+  // JSON document
+  // consists of visible variables in the root scope
+  string variables = 5;
+
+}
+
 message DeployWorkflowRequest {
   // List of workflow resources to deploy
   repeated WorkflowRequestObject workflows = 1;
@@ -168,6 +196,18 @@ message FailJobRequest {
 }
 
 message FailJobResponse {
+}
+
+message ThrowErrorRequest {
+  // the unique job identifier, as obtained when activating the job
+  int64 jobKey = 1;
+  // the error code that will be matched with an error catch event
+  string errorCode = 2;
+  // an optional error message that provides additional context
+  string errorMessage = 3;
+}
+
+message ThrowErrorResponse {
 }
 
 message PublishMessageRequest {
@@ -263,6 +303,8 @@ message SetVariablesRequest {
 }
 
 message SetVariablesResponse {
+  // the unique key of the set variables command
+  int64 key = 1;
 }
 
 service Gateway {
@@ -330,6 +372,12 @@ service Gateway {
   }
 
   /*
+    Behaves similarly to `rpc CreateWorkflowInstance`, except that a successful response is received when the workflow completes successfully.
+  */
+  rpc CreateWorkflowInstanceWithResult (CreateWorkflowInstanceWithResultRequest) returns (CreateWorkflowInstanceWithResultResponse) {
+  }
+
+  /*
     Deploys one or more workflows to Zeebe. Note that this is an atomic call,
     i.e. either all workflows are deployed, or none of them are.
 
@@ -359,6 +407,19 @@ service Gateway {
         - the job is already in a failed state, i.e. ran out of retries
    */
   rpc FailJob (FailJobRequest) returns (FailJobResponse) {
+  }
+
+  /*
+    Reports a business error (i.e. non-technical) that occurs while processing a job. The error is handled in the workflow by an error catch event. If there is no error catch event with the specified errorCode then an incident will be raised instead.
+   
+    Errors:
+      NOT_FOUND:
+        - no job was found with the given key
+
+      FAILED_PRECONDITION:
+        - the job is not in an activated state
+   */
+  rpc ThrowError (ThrowErrorRequest) returns (ThrowErrorResponse) {
   }
 
   /*

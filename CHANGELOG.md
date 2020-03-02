@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+
+- add support for [Zeebe 0.22.1](https://github.com/zeebe-io/zeebe/releases/tag/0.22.1)
+
 ## 0.8.0 (October 9, 2019)
 
 - add support for [Zeebe 0.21.1](https://github.com/zeebe-io/zeebe/releases/tag/0.21.1)

@@ -66,6 +66,9 @@ module Zeebe::Client::GatewayProtocol
       # JSON document where the root node is an object.
       rpc :CreateWorkflowInstance, CreateWorkflowInstanceRequest, CreateWorkflowInstanceResponse
       #
+      # Behaves similarly to `rpc CreateWorkflowInstance`, except that a successful response is received when the workflow completes successfully.
+      rpc :CreateWorkflowInstanceWithResult, CreateWorkflowInstanceWithResultRequest, CreateWorkflowInstanceWithResultResponse
+      #
       # Deploys one or more workflows to Zeebe. Note that this is an atomic call,
       # i.e. either all workflows are deployed, or none of them are.
       #
@@ -91,6 +94,16 @@ module Zeebe::Client::GatewayProtocol
       # - the job was not activated
       # - the job is already in a failed state, i.e. ran out of retries
       rpc :FailJob, FailJobRequest, FailJobResponse
+      #
+      # Reports a business error (i.e. non-technical) that occurs while processing a job. The error is handled in the workflow by an error catch event. If there is no error catch event with the specified errorCode then an incident will be raised instead.
+      #
+      # Errors:
+      # NOT_FOUND:
+      # - no job was found with the given key
+      #
+      # FAILED_PRECONDITION:
+      # - the job is not in an activated state
+      rpc :ThrowError, ThrowErrorRequest, ThrowErrorResponse
       #
       # Publishes a single message. Messages are published to specific partitions computed from their
       # correlation keys.
