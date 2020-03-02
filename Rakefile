@@ -14,7 +14,7 @@ task travis: ['zeebe:start', :default, 'zeebe:stop']
 desc 'Starts Zeebe Docker container'
 task 'zeebe:start' do
   sh 'docker run -d --name zeebe --rm -p 26500:26500 camunda/zeebe:0.22.1'
-  sleep(5)
+  sleep(10)
 end
 
 desc 'Stops Zeebe Docker container'
