@@ -5,9 +5,6 @@ AllCops:
     - 'examples/*'
     - 'lib/zeebe/client/proto/*'
 
-Gemspec/OrderedDependencies:
-  Enabled: false
-
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
