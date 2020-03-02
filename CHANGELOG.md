@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.9.0
+## 0.9.0 (March 2, 2020)
 
 - add support for [Zeebe 0.22.1](https://github.com/zeebe-io/zeebe/releases/tag/0.22.1)
 
