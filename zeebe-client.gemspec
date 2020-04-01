@@ -26,6 +26,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'grpc-tools', '~> 1.27.0'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rubocop', '~> 0.80.1'
+  s.add_development_dependency 'rubocop', '~> 0.81.0'
   s.add_development_dependency 'solargraph'
 end
