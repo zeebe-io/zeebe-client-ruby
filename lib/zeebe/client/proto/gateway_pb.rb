@@ -124,12 +124,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :clusterSize, :int32, 2
       optional :partitionsCount, :int32, 3
       optional :replicationFactor, :int32, 4
+      optional :gatewayVersion, :string, 5
     end
     add_message "gateway_protocol.BrokerInfo" do
       optional :nodeId, :int32, 1
       optional :host, :string, 2
       optional :port, :int32, 3
       repeated :partitions, :message, 4, "gateway_protocol.Partition"
+      optional :version, :string, 5
     end
     add_message "gateway_protocol.Partition" do
       optional :partitionId, :int32, 1
