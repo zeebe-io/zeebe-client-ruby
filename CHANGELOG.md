@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.9.2
+## 0.10.0 (April 21, 2020)
 
 - add support for [Zeebe 0.23.0](https://github.com/zeebe-io/zeebe/releases/tag/0.23.0)
 - fix load order problem to allow loading the gem successfully [#47](https://github.com/zeebe-io/zeebe-client-ruby/pull/47) (thanks rusterholz)
