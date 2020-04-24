@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.10.1
+## 0.10.1 (April 24, 2020)
 
 - add support for [Zeebe 0.23.1](https://github.com/zeebe-io/zeebe/releases/tag/0.23.1)
 - improve test setup to allow catching some load order problems like the one from [#47](https://github.com/zeebe-io/zeebe-client-ruby/pull/47)
