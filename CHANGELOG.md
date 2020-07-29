@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.11.0
+## 0.11.0 (July 29, 2020)
 
 - support Ruby 2.7
 - drop EOL Ruby 2.4 and older
