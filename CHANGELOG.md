@@ -2,6 +2,8 @@
 
 ## 0.11.0
 
+- support Ruby 2.7
+- drop EOL Ruby 2.4 and older
 - add support for [Zeebe 0.24.1](https://github.com/zeebe-io/zeebe/releases/tag/0.24.1)
 
 ## 0.10.1 (April 24, 2020)
