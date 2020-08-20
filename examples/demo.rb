@@ -13,8 +13,3 @@ puts "  Brokers:"
 topology.brokers.each do |b|
   puts "    - id: #{b.nodeId}, address: #{b.host}:#{b.port}, partitions: #{b.partitions.map { |p| p.partitionId }}"
 end
-
-workflows = zeebe_client.list_workflows(Zeebe::Client::GatewayProtocol::ListWorkflowsRequest.new).workflows
-
-puts ""
-puts "Zeebe workflows: #{workflows.inspect}"
