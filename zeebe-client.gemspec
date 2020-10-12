@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.3'
 
-  s.add_runtime_dependency 'grpc', '~> 1.31.0'
+  s.add_runtime_dependency 'grpc', '~> 1.32.0'
 
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'bundler-audit', '~> 0.7.0'
