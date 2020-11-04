@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.11.1
+## 0.11.1 (November 4, 2020)
 
 - add support for [Zeebe 0.24.3](https://github.com/zeebe-io/zeebe/releases/tag/0.24.3)
 
