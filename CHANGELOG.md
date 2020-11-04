@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.1
+
+- add support for [Zeebe 0.24.3](https://github.com/zeebe-io/zeebe/releases/tag/0.24.3)
+
 ## 0.11.0 (July 29, 2020)
 
 - support Ruby 2.7

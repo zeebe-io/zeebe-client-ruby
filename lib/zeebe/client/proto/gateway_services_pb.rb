@@ -24,14 +24,14 @@ module Zeebe::Client::GatewayProtocol
       # - worker is blank (empty string, null)
       # - timeout less than 1
       # - maxJobsToActivate is less than 1
-      rpc :ActivateJobs, ActivateJobsRequest, stream(ActivateJobsResponse)
+      rpc :ActivateJobs, ::Zeebe::Client::GatewayProtocol::ActivateJobsRequest, stream(::Zeebe::Client::GatewayProtocol::ActivateJobsResponse)
       #
       # Cancels a running workflow instance
       #
       # Errors:
       # NOT_FOUND:
       # - no workflow instance exists with the given key
-      rpc :CancelWorkflowInstance, CancelWorkflowInstanceRequest, CancelWorkflowInstanceResponse
+      rpc :CancelWorkflowInstance, ::Zeebe::Client::GatewayProtocol::CancelWorkflowInstanceRequest, ::Zeebe::Client::GatewayProtocol::CancelWorkflowInstanceResponse
       #
       # Completes a job with the given variables, which allows completing the associated service task.
       #
@@ -43,7 +43,7 @@ module Zeebe::Client::GatewayProtocol
       # FAILED_PRECONDITION:
       # - the job was marked as failed. In that case, the related incident must be resolved before
       # the job can be activated again and completed.
-      rpc :CompleteJob, CompleteJobRequest, CompleteJobResponse
+      rpc :CompleteJob, ::Zeebe::Client::GatewayProtocol::CompleteJobRequest, ::Zeebe::Client::GatewayProtocol::CompleteJobResponse
       #
       # Creates and starts an instance of the specified workflow. The workflow definition to use to
       # create the instance can be specified either using its unique key (as returned by
@@ -64,10 +64,10 @@ module Zeebe::Client::GatewayProtocol
       # INVALID_ARGUMENT:
       # - the given variables argument is not a valid JSON document; it is expected to be a valid
       # JSON document where the root node is an object.
-      rpc :CreateWorkflowInstance, CreateWorkflowInstanceRequest, CreateWorkflowInstanceResponse
+      rpc :CreateWorkflowInstance, ::Zeebe::Client::GatewayProtocol::CreateWorkflowInstanceRequest, ::Zeebe::Client::GatewayProtocol::CreateWorkflowInstanceResponse
       #
       # Behaves similarly to `rpc CreateWorkflowInstance`, except that a successful response is received when the workflow completes successfully.
-      rpc :CreateWorkflowInstanceWithResult, CreateWorkflowInstanceWithResultRequest, CreateWorkflowInstanceWithResultResponse
+      rpc :CreateWorkflowInstanceWithResult, ::Zeebe::Client::GatewayProtocol::CreateWorkflowInstanceWithResultRequest, ::Zeebe::Client::GatewayProtocol::CreateWorkflowInstanceWithResultResponse
       #
       # Deploys one or more workflows to Zeebe. Note that this is an atomic call,
       # i.e. either all workflows are deployed, or none of them are.
@@ -79,7 +79,7 @@ module Zeebe::Client::GatewayProtocol
       # - it is not a BPMN or YAML file (currently detected through the file extension)
       # - the resource data is not deserializable (e.g. detected as BPMN, but it's broken XML)
       # - the workflow is invalid (e.g. an event-based gateway has an outgoing sequence flow to a task)
-      rpc :DeployWorkflow, DeployWorkflowRequest, DeployWorkflowResponse
+      rpc :DeployWorkflow, ::Zeebe::Client::GatewayProtocol::DeployWorkflowRequest, ::Zeebe::Client::GatewayProtocol::DeployWorkflowResponse
       #
       # Marks the job as failed; if the retries argument is positive, then the job will be immediately
       # activatable again, and a worker could try again to process it. If it is zero or negative however,
@@ -93,7 +93,7 @@ module Zeebe::Client::GatewayProtocol
       # FAILED_PRECONDITION:
       # - the job was not activated
       # - the job is already in a failed state, i.e. ran out of retries
-      rpc :FailJob, FailJobRequest, FailJobResponse
+      rpc :FailJob, ::Zeebe::Client::GatewayProtocol::FailJobRequest, ::Zeebe::Client::GatewayProtocol::FailJobResponse
       #
       # Reports a business error (i.e. non-technical) that occurs while processing a job. The error is handled in the workflow by an error catch event. If there is no error catch event with the specified errorCode then an incident will be raised instead.
       #
@@ -103,7 +103,7 @@ module Zeebe::Client::GatewayProtocol
       #
       # FAILED_PRECONDITION:
       # - the job is not in an activated state
-      rpc :ThrowError, ThrowErrorRequest, ThrowErrorResponse
+      rpc :ThrowError, ::Zeebe::Client::GatewayProtocol::ThrowErrorRequest, ::Zeebe::Client::GatewayProtocol::ThrowErrorResponse
       #
       # Publishes a single message. Messages are published to specific partitions computed from their
       # correlation keys.
@@ -111,7 +111,7 @@ module Zeebe::Client::GatewayProtocol
       # Errors:
       # ALREADY_EXISTS:
       # - a message with the same ID was previously published (and is still alive)
-      rpc :PublishMessage, PublishMessageRequest, PublishMessageResponse
+      rpc :PublishMessage, ::Zeebe::Client::GatewayProtocol::PublishMessageRequest, ::Zeebe::Client::GatewayProtocol::PublishMessageResponse
       #
       # Resolves a given incident. This simply marks the incident as resolved; most likely a call to
       # UpdateJobRetries or SetVariables will be necessary to actually resolve the
@@ -120,7 +120,7 @@ module Zeebe::Client::GatewayProtocol
       # Errors:
       # NOT_FOUND:
       # - no incident with the given key exists
-      rpc :ResolveIncident, ResolveIncidentRequest, ResolveIncidentResponse
+      rpc :ResolveIncident, ::Zeebe::Client::GatewayProtocol::ResolveIncidentRequest, ::Zeebe::Client::GatewayProtocol::ResolveIncidentResponse
       #
       # Updates all the variables of a particular scope (e.g. workflow instance, flow element instance)
       # from the given JSON document.
@@ -131,10 +131,10 @@ module Zeebe::Client::GatewayProtocol
       # INVALID_ARGUMENT:
       # - the given variables document is not a valid JSON document; valid documents are expected to
       # be JSON documents where the root node is an object.
-      rpc :SetVariables, SetVariablesRequest, SetVariablesResponse
+      rpc :SetVariables, ::Zeebe::Client::GatewayProtocol::SetVariablesRequest, ::Zeebe::Client::GatewayProtocol::SetVariablesResponse
       #
       # Obtains the current topology of the cluster the gateway is part of.
-      rpc :Topology, TopologyRequest, TopologyResponse
+      rpc :Topology, ::Zeebe::Client::GatewayProtocol::TopologyRequest, ::Zeebe::Client::GatewayProtocol::TopologyResponse
       #
       # Updates the number of retries a job has left. This is mostly useful for jobs that have run out of
       # retries, should the underlying problem be solved.
@@ -145,7 +145,7 @@ module Zeebe::Client::GatewayProtocol
       #
       # INVALID_ARGUMENT:
       # - retries is not greater than 0
-      rpc :UpdateJobRetries, UpdateJobRetriesRequest, UpdateJobRetriesResponse
+      rpc :UpdateJobRetries, ::Zeebe::Client::GatewayProtocol::UpdateJobRetriesRequest, ::Zeebe::Client::GatewayProtocol::UpdateJobRetriesResponse
     end
 
     Stub = Service.rpc_stub_class
