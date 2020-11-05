@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.11.2
+## 0.11.2 (November 5, 2020)
 
 - relax `grpc` dependency version constraint from `~> 1.32.0` to `~> 1.32` thus allowing usage of future versions that are compatible due to [semver](https://github.com/grpc/grpc/blob/master/doc/versioning.md), thanks @rusterholz
 
