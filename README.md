@@ -1,6 +1,6 @@
 # Zeebe Ruby Client
 
-[![Build Status](https://travis-ci.org/zeebe-io/zeebe-client-ruby.svg?branch=master)](https://travis-ci.org/zeebe-io/zeebe-client-ruby/)
+![Build Status](https://github.com/zeebe-io/zeebe-client-ruby/workflows/ci/badge.svg)
 
 [Zeebe](https://zeebe.io) client containing a simple wrapper for the GRPC protocol used by Zeebe.
 
