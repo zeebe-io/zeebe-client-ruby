@@ -111,6 +111,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :variables, :string, 5
     end
     add_message "gateway_protocol.PublishMessageResponse" do
+      optional :key, :int64, 1
     end
     add_message "gateway_protocol.ResolveIncidentRequest" do
       optional :incidentKey, :int64, 1

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.0
+
+- add support for [Zeebe 0.25.1](https://github.com/zeebe-io/zeebe/releases/tag/0.25.1)
+
 ## 0.11.2 (November 5, 2020)
 
 - relax `grpc` dependency version constraint from `~> 1.32.0` to `~> 1.32` thus allowing usage of future versions that are compatible due to [semver](https://github.com/grpc/grpc/blob/master/doc/versioning.md), thanks @rusterholz
