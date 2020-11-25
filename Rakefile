@@ -9,7 +9,7 @@ Bundler::Audit::Task.new
 
 task default: [:rubocop, :spec, 'bundle:audit']
 
-task travis: ['zeebe:start', :default, 'zeebe:stop']
+task ci: ['zeebe:start', :default, 'zeebe:stop']
 
 desc 'Starts Zeebe Docker container'
 task 'zeebe:start' do

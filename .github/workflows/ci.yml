@@ -1,3 +1,4 @@
+---
 name: ci
 
 on:
@@ -6,7 +7,7 @@ on:
   pull_request:
     branches: [master]
   schedule:
-  - cron: '7 4 * * 4'  # weekly on thursday morning
+  - cron: '55 4 * * 4'  # weekly on thursday morning
 
 jobs:
   build:
@@ -28,4 +29,4 @@ jobs:
         bundle
     - name: Test
       run: |
-        bundle exec rake travis
+        bundle exec rake ci
