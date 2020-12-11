@@ -13,7 +13,7 @@ task ci: ['zeebe:start', :default, 'zeebe:stop']
 
 desc 'Starts Zeebe Docker container'
 task 'zeebe:start' do
-  sh 'docker run -d --name zeebe --rm -p 26500:26500 camunda/zeebe:0.25.1'
+  sh 'docker run -d --name zeebe --rm -p 26500:26500 camunda/zeebe:0.25.3'
   sleep(10)
 end
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.12.1 (December 11, 2020)
+
+- add support for [Zeebe 0.25.3](https://github.com/zeebe-io/zeebe/releases/tag/0.25.3)
 - drop Travis CI in favor of Github Actions
 
 ## 0.12.0 (November 9, 2020)
