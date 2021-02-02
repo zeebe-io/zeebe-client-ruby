@@ -137,10 +137,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "gateway_protocol.Partition" do
       optional :partitionId, :int32, 1
       optional :role, :enum, 2, "gateway_protocol.Partition.PartitionBrokerRole"
+      optional :health, :enum, 3, "gateway_protocol.Partition.PartitionBrokerHealth"
     end
     add_enum "gateway_protocol.Partition.PartitionBrokerRole" do
       value :LEADER, 0
       value :FOLLOWER, 1
+    end
+    add_enum "gateway_protocol.Partition.PartitionBrokerHealth" do
+      value :HEALTHY, 0
+      value :UNHEALTHY, 1
     end
     add_message "gateway_protocol.UpdateJobRetriesRequest" do
       optional :jobKey, :int64, 1
@@ -189,6 +194,7 @@ module Zeebe::Client::GatewayProtocol
   BrokerInfo = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.BrokerInfo").msgclass
   Partition = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Partition").msgclass
   Partition::PartitionBrokerRole = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Partition.PartitionBrokerRole").enummodule
+  Partition::PartitionBrokerHealth = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Partition.PartitionBrokerHealth").enummodule
   UpdateJobRetriesRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesRequest").msgclass
   UpdateJobRetriesResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.UpdateJobRetriesResponse").msgclass
   SetVariablesRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.SetVariablesRequest").msgclass
