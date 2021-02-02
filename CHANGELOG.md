@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.0
+
+- add support for [Zeebe 0.26](https://github.com/zeebe-io/zeebe/releases/tag/0.26.0)
+
 ## 0.12.1 (December 11, 2020)
 
 - add support for [Zeebe 0.25.3](https://github.com/zeebe-io/zeebe/releases/tag/0.25.3)
