@@ -6,7 +6,7 @@
 
 ## 0.13.0 (February 3, 2021)
 
-- add support for [Zeebe 0.26.0](https://github.com/zeebe-io/zeebe/releases/tag/0.26.0)
+- add support for [Zeebe 0.26.0](https://github.com/zeebe-io/zeebe/releases/tag/0.26.0), thanks []@rusterholz](https://github.com/zeebe-io/zeebe-client-ruby/pull/62)
 
 ## 0.12.1 (December 11, 2020)
 
