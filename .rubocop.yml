@@ -1,9 +1,13 @@
 ---
+inherit_mode:
+  merge:
+  - Exclude
+
 AllCops:
   TargetRubyVersion: '2.5'
   Exclude:
-    - 'examples/*'
-    - 'lib/zeebe/client/proto/*'
+  - 'examples/*'
+  - 'lib/zeebe/client/proto/*'
 
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
