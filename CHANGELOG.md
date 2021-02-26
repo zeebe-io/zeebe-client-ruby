@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.13.1
+## 0.13.1 (February 26, 2021)
 
 - support Ruby 3.0
 - add support for [Zeebe 0.26.1](https://github.com/zeebe-io/zeebe/releases/tag/0.26.1)
