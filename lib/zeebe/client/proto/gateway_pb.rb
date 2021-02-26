@@ -142,6 +142,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "gateway_protocol.Partition.PartitionBrokerRole" do
       value :LEADER, 0
       value :FOLLOWER, 1
+      value :INACTIVE, 2
     end
     add_enum "gateway_protocol.Partition.PartitionBrokerHealth" do
       value :HEALTHY, 0
