@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.13.2
+## 0.13.2 (March 30, 2021)
 
 - add support for [Zeebe 0.26.2](https://github.com/zeebe-io/zeebe/releases/tag/0.26.2)
 
