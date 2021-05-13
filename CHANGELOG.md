@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.14.0 (May 12, 2021)
+
+- add support for [Zeebe 1.0.0](https://github.com/camunda-cloud/zeebe/releases/tag/1.0.0)
+
+
 ## 0.13.2 (March 30, 2021)
 
 - add support for [Zeebe 0.26.2](https://github.com/zeebe-io/zeebe/releases/tag/0.26.2)
