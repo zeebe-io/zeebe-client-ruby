@@ -8,7 +8,7 @@ module Zeebe::Client::GatewayProtocol
   module Gateway
     class Service
 
-      include GRPC::GenericService
+      include ::GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
@@ -26,12 +26,12 @@ module Zeebe::Client::GatewayProtocol
       # - maxJobsToActivate is less than 1
       rpc :ActivateJobs, ::Zeebe::Client::GatewayProtocol::ActivateJobsRequest, stream(::Zeebe::Client::GatewayProtocol::ActivateJobsResponse)
       #
-      # Cancels a running workflow instance
+      # Cancels a running process instance
       #
       # Errors:
       # NOT_FOUND:
-      # - no workflow instance exists with the given key
-      rpc :CancelWorkflowInstance, ::Zeebe::Client::GatewayProtocol::CancelWorkflowInstanceRequest, ::Zeebe::Client::GatewayProtocol::CancelWorkflowInstanceResponse
+      # - no process instance exists with the given key
+      rpc :CancelProcessInstance, ::Zeebe::Client::GatewayProtocol::CancelProcessInstanceRequest, ::Zeebe::Client::GatewayProtocol::CancelProcessInstanceResponse
       #
       # Completes a job with the given variables, which allows completing the associated service task.
       #
@@ -45,41 +45,40 @@ module Zeebe::Client::GatewayProtocol
       # the job can be activated again and completed.
       rpc :CompleteJob, ::Zeebe::Client::GatewayProtocol::CompleteJobRequest, ::Zeebe::Client::GatewayProtocol::CompleteJobResponse
       #
-      # Creates and starts an instance of the specified workflow. The workflow definition to use to
+      # Creates and starts an instance of the specified process. The process definition to use to
       # create the instance can be specified either using its unique key (as returned by
-      # DeployWorkflow), or using the BPMN process ID and a version. Pass -1 as the version to use the
-      # latest deployed version. Note that only workflows with none start events can be started through
+      # DeployProcess), or using the BPMN process ID and a version. Pass -1 as the version to use the
+      # latest deployed version. Note that only processes with none start events can be started through
       # this command.
       #
       # Errors:
       # NOT_FOUND:
-      # - no workflow with the given key exists (if workflowKey was given)
-      # - no workflow with the given process ID exists (if bpmnProcessId was given but version was -1)
-      # - no workflow with the given process ID and version exists (if both bpmnProcessId and version were given)
+      # - no process with the given key exists (if processDefinitionKey was given)
+      # - no process with the given process ID exists (if bpmnProcessId was given but version was -1)
+      # - no process with the given process ID and version exists (if both bpmnProcessId and version were given)
       #
       # FAILED_PRECONDITION:
-      # - the workflow definition does not contain a none start event; only workflows with none
+      # - the process definition does not contain a none start event; only processes with none
       # start event can be started manually.
       #
       # INVALID_ARGUMENT:
       # - the given variables argument is not a valid JSON document; it is expected to be a valid
       # JSON document where the root node is an object.
-      rpc :CreateWorkflowInstance, ::Zeebe::Client::GatewayProtocol::CreateWorkflowInstanceRequest, ::Zeebe::Client::GatewayProtocol::CreateWorkflowInstanceResponse
+      rpc :CreateProcessInstance, ::Zeebe::Client::GatewayProtocol::CreateProcessInstanceRequest, ::Zeebe::Client::GatewayProtocol::CreateProcessInstanceResponse
       #
-      # Behaves similarly to `rpc CreateWorkflowInstance`, except that a successful response is received when the workflow completes successfully.
-      rpc :CreateWorkflowInstanceWithResult, ::Zeebe::Client::GatewayProtocol::CreateWorkflowInstanceWithResultRequest, ::Zeebe::Client::GatewayProtocol::CreateWorkflowInstanceWithResultResponse
+      # Behaves similarly to `rpc CreateProcessInstance`, except that a successful response is received when the process completes successfully.
+      rpc :CreateProcessInstanceWithResult, ::Zeebe::Client::GatewayProtocol::CreateProcessInstanceWithResultRequest, ::Zeebe::Client::GatewayProtocol::CreateProcessInstanceWithResultResponse
       #
-      # Deploys one or more workflows to Zeebe. Note that this is an atomic call,
-      # i.e. either all workflows are deployed, or none of them are.
+      # Deploys one or more processes to Zeebe. Note that this is an atomic call,
+      # i.e. either all processes are deployed, or none of them are.
       #
       # Errors:
       # INVALID_ARGUMENT:
       # - no resources given.
       # - if at least one resource is invalid. A resource is considered invalid if:
-      # - it is not a BPMN or YAML file (currently detected through the file extension)
       # - the resource data is not deserializable (e.g. detected as BPMN, but it's broken XML)
-      # - the workflow is invalid (e.g. an event-based gateway has an outgoing sequence flow to a task)
-      rpc :DeployWorkflow, ::Zeebe::Client::GatewayProtocol::DeployWorkflowRequest, ::Zeebe::Client::GatewayProtocol::DeployWorkflowResponse
+      # - the process is invalid (e.g. an event-based gateway has an outgoing sequence flow to a task)
+      rpc :DeployProcess, ::Zeebe::Client::GatewayProtocol::DeployProcessRequest, ::Zeebe::Client::GatewayProtocol::DeployProcessResponse
       #
       # Marks the job as failed; if the retries argument is positive, then the job will be immediately
       # activatable again, and a worker could try again to process it. If it is zero or negative however,
@@ -95,7 +94,7 @@ module Zeebe::Client::GatewayProtocol
       # - the job is already in a failed state, i.e. ran out of retries
       rpc :FailJob, ::Zeebe::Client::GatewayProtocol::FailJobRequest, ::Zeebe::Client::GatewayProtocol::FailJobResponse
       #
-      # Reports a business error (i.e. non-technical) that occurs while processing a job. The error is handled in the workflow by an error catch event. If there is no error catch event with the specified errorCode then an incident will be raised instead.
+      # Reports a business error (i.e. non-technical) that occurs while processing a job. The error is handled in the process by an error catch event. If there is no error catch event with the specified errorCode then an incident will be raised instead.
       #
       # Errors:
       # NOT_FOUND:
@@ -122,7 +121,7 @@ module Zeebe::Client::GatewayProtocol
       # - no incident with the given key exists
       rpc :ResolveIncident, ::Zeebe::Client::GatewayProtocol::ResolveIncidentRequest, ::Zeebe::Client::GatewayProtocol::ResolveIncidentResponse
       #
-      # Updates all the variables of a particular scope (e.g. workflow instance, flow element instance)
+      # Updates all the variables of a particular scope (e.g. process instance, flow element instance)
       # from the given JSON document.
       #
       # Errors:

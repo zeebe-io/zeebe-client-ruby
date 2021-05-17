@@ -19,10 +19,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "gateway_protocol.ActivatedJob" do
       optional :key, :int64, 1
       optional :type, :string, 2
-      optional :workflowInstanceKey, :int64, 3
+      optional :processInstanceKey, :int64, 3
       optional :bpmnProcessId, :string, 4
-      optional :workflowDefinitionVersion, :int32, 5
-      optional :workflowKey, :int64, 6
+      optional :processDefinitionVersion, :int32, 5
+      optional :processDefinitionKey, :int64, 6
       optional :elementId, :string, 7
       optional :elementInstanceKey, :int64, 8
       optional :customHeaders, :string, 9
@@ -31,10 +31,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :deadline, :int64, 12
       optional :variables, :string, 13
     end
-    add_message "gateway_protocol.CancelWorkflowInstanceRequest" do
-      optional :workflowInstanceKey, :int64, 1
+    add_message "gateway_protocol.CancelProcessInstanceRequest" do
+      optional :processInstanceKey, :int64, 1
     end
-    add_message "gateway_protocol.CancelWorkflowInstanceResponse" do
+    add_message "gateway_protocol.CancelProcessInstanceResponse" do
     end
     add_message "gateway_protocol.CompleteJobRequest" do
       optional :jobKey, :int64, 1
@@ -42,51 +42,45 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "gateway_protocol.CompleteJobResponse" do
     end
-    add_message "gateway_protocol.CreateWorkflowInstanceRequest" do
-      optional :workflowKey, :int64, 1
+    add_message "gateway_protocol.CreateProcessInstanceRequest" do
+      optional :processDefinitionKey, :int64, 1
       optional :bpmnProcessId, :string, 2
       optional :version, :int32, 3
       optional :variables, :string, 4
     end
-    add_message "gateway_protocol.CreateWorkflowInstanceResponse" do
-      optional :workflowKey, :int64, 1
+    add_message "gateway_protocol.CreateProcessInstanceResponse" do
+      optional :processDefinitionKey, :int64, 1
       optional :bpmnProcessId, :string, 2
       optional :version, :int32, 3
-      optional :workflowInstanceKey, :int64, 4
+      optional :processInstanceKey, :int64, 4
     end
-    add_message "gateway_protocol.CreateWorkflowInstanceWithResultRequest" do
-      optional :request, :message, 1, "gateway_protocol.CreateWorkflowInstanceRequest"
+    add_message "gateway_protocol.CreateProcessInstanceWithResultRequest" do
+      optional :request, :message, 1, "gateway_protocol.CreateProcessInstanceRequest"
       optional :requestTimeout, :int64, 2
       repeated :fetchVariables, :string, 3
     end
-    add_message "gateway_protocol.CreateWorkflowInstanceWithResultResponse" do
-      optional :workflowKey, :int64, 1
+    add_message "gateway_protocol.CreateProcessInstanceWithResultResponse" do
+      optional :processDefinitionKey, :int64, 1
       optional :bpmnProcessId, :string, 2
       optional :version, :int32, 3
-      optional :workflowInstanceKey, :int64, 4
+      optional :processInstanceKey, :int64, 4
       optional :variables, :string, 5
     end
-    add_message "gateway_protocol.DeployWorkflowRequest" do
-      repeated :workflows, :message, 1, "gateway_protocol.WorkflowRequestObject"
+    add_message "gateway_protocol.DeployProcessRequest" do
+      repeated :processes, :message, 1, "gateway_protocol.ProcessRequestObject"
     end
-    add_message "gateway_protocol.WorkflowRequestObject" do
+    add_message "gateway_protocol.ProcessRequestObject" do
       optional :name, :string, 1
-      optional :type, :enum, 2, "gateway_protocol.WorkflowRequestObject.ResourceType"
-      optional :definition, :bytes, 3
+      optional :definition, :bytes, 2
     end
-    add_enum "gateway_protocol.WorkflowRequestObject.ResourceType" do
-      value :FILE, 0
-      value :BPMN, 1
-      value :YAML, 2
-    end
-    add_message "gateway_protocol.DeployWorkflowResponse" do
+    add_message "gateway_protocol.DeployProcessResponse" do
       optional :key, :int64, 1
-      repeated :workflows, :message, 2, "gateway_protocol.WorkflowMetadata"
+      repeated :processes, :message, 2, "gateway_protocol.ProcessMetadata"
     end
-    add_message "gateway_protocol.WorkflowMetadata" do
+    add_message "gateway_protocol.ProcessMetadata" do
       optional :bpmnProcessId, :string, 1
       optional :version, :int32, 2
-      optional :workflowKey, :int64, 3
+      optional :processDefinitionKey, :int64, 3
       optional :resourceName, :string, 4
     end
     add_message "gateway_protocol.FailJobRequest" do
@@ -169,19 +163,18 @@ module Zeebe::Client::GatewayProtocol
   ActivateJobsRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsRequest").msgclass
   ActivateJobsResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivateJobsResponse").msgclass
   ActivatedJob = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ActivatedJob").msgclass
-  CancelWorkflowInstanceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelWorkflowInstanceRequest").msgclass
-  CancelWorkflowInstanceResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelWorkflowInstanceResponse").msgclass
+  CancelProcessInstanceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelProcessInstanceRequest").msgclass
+  CancelProcessInstanceResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CancelProcessInstanceResponse").msgclass
   CompleteJobRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CompleteJobRequest").msgclass
   CompleteJobResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CompleteJobResponse").msgclass
-  CreateWorkflowInstanceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceRequest").msgclass
-  CreateWorkflowInstanceResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceResponse").msgclass
-  CreateWorkflowInstanceWithResultRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceWithResultRequest").msgclass
-  CreateWorkflowInstanceWithResultResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateWorkflowInstanceWithResultResponse").msgclass
-  DeployWorkflowRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployWorkflowRequest").msgclass
-  WorkflowRequestObject = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowRequestObject").msgclass
-  WorkflowRequestObject::ResourceType = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowRequestObject.ResourceType").enummodule
-  DeployWorkflowResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployWorkflowResponse").msgclass
-  WorkflowMetadata = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.WorkflowMetadata").msgclass
+  CreateProcessInstanceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateProcessInstanceRequest").msgclass
+  CreateProcessInstanceResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateProcessInstanceResponse").msgclass
+  CreateProcessInstanceWithResultRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateProcessInstanceWithResultRequest").msgclass
+  CreateProcessInstanceWithResultResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.CreateProcessInstanceWithResultResponse").msgclass
+  DeployProcessRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployProcessRequest").msgclass
+  ProcessRequestObject = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ProcessRequestObject").msgclass
+  DeployProcessResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployProcessResponse").msgclass
+  ProcessMetadata = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ProcessMetadata").msgclass
   FailJobRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobRequest").msgclass
   FailJobResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobResponse").msgclass
   ThrowErrorRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ThrowErrorRequest").msgclass
