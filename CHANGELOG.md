@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.14.0
+## 0.14.0 (May 17, 2021)
 
-- add support for [Zeebe 1.0.0](https://github.com/zeebe-io/zeebe/releases/tag/1.0.0)
+- add support for [Zeebe 1.0.0](https://github.com/zeebe-io/zeebe/releases/tag/1.0.0), thanks [@EugeneIstomin](https://github.com/zeebe-io/zeebe-client-ruby/pull/69)
 
 ## 0.13.2 (March 30, 2021)
 
@@ -15,7 +15,7 @@
 
 ## 0.13.0 (February 3, 2021)
 
-- add support for [Zeebe 0.26.0](https://github.com/zeebe-io/zeebe/releases/tag/0.26.0), thanks []@rusterholz](https://github.com/zeebe-io/zeebe-client-ruby/pull/62)
+- add support for [Zeebe 0.26.0](https://github.com/zeebe-io/zeebe/releases/tag/0.26.0), thanks [@rusterholz](https://github.com/zeebe-io/zeebe-client-ruby/pull/62)
 
 ## 0.12.1 (December 11, 2020)
 
