@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.1
+
+- add support for [Zeebe 1.0.1](https://github.com/zeebe-io/zeebe/releases/tag/1.0.1)
+
 ## 0.14.0 (May 17, 2021)
 
 - add support for [Zeebe 1.0.0](https://github.com/zeebe-io/zeebe/releases/tag/1.0.0), thanks [@EugeneIstomin](https://github.com/zeebe-io/zeebe-client-ruby/pull/69)
