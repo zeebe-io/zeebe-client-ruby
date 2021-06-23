@@ -5,6 +5,7 @@ inherit_mode:
 
 AllCops:
   TargetRubyVersion: '2.5'
+  NewCops: enable
   Exclude:
   - 'examples/*'
   - 'lib/zeebe/client/proto/*'
