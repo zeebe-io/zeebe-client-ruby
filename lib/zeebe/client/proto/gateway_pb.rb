@@ -141,6 +141,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "gateway_protocol.Partition.PartitionBrokerHealth" do
       value :HEALTHY, 0
       value :UNHEALTHY, 1
+      value :DEAD, 2
     end
     add_message "gateway_protocol.UpdateJobRetriesRequest" do
       optional :jobKey, :int64, 1
