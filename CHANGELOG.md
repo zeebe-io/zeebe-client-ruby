@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.16.0
+## 0.16.0 (October 12, 2021)
 
 - add support for [Zeebe 1.2.0](https://github.com/zeebe-io/zeebe/releases/tag/1.2.0)
 
