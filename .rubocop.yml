@@ -10,6 +10,9 @@ AllCops:
   - 'examples/*'
   - 'lib/zeebe/client/proto/*'
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
