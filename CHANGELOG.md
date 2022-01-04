@@ -2,7 +2,7 @@
 
 ## 0.16.1
 
-- add support for [Zeebe 1.2.1](https://github.com/zeebe-io/zeebe/releases/tag/1.2.1)
+- add support for [Zeebe 1.2.9](https://github.com/zeebe-io/zeebe/releases/tag/1.2.9) which includes some Log4J CVE fixes
 
 ## 0.16.0 (October 12, 2021)
 
