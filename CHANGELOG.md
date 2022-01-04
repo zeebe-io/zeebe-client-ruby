@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.16.1
+## 0.16.1 (January 4th, 2022)
 
 - add support for [Zeebe 1.2.9](https://github.com/zeebe-io/zeebe/releases/tag/1.2.9) which includes some Log4J CVE fixes
 
