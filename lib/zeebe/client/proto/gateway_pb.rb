@@ -87,6 +87,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :jobKey, :int64, 1
       optional :retries, :int32, 2
       optional :errorMessage, :string, 3
+      optional :retryBackOff, :int64, 4
     end
     add_message "gateway_protocol.FailJobResponse" do
     end
