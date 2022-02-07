@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.4
+
+- add support for [Zeebe 1.3.3](https://github.com/zeebe-io/zeebe/releases/tag/1.3.3)
+
 ## 0.16.3 (January 31st, 2022)
 
 - add support for [Zeebe 1.3.2](https://github.com/zeebe-io/zeebe/releases/tag/1.3.2)
