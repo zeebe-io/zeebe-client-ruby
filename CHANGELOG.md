@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.5
+
+- add support for [Zeebe 1.3.6](https://github.com/camunda/zeebe/releases/tag/1.3.6)
+
 ## 0.16.4
 
 - add support for [Zeebe 1.3.3](https://github.com/zeebe-io/zeebe/releases/tag/1.3.3)
