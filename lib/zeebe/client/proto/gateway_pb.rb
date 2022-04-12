@@ -77,11 +77,44 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :key, :int64, 1
       repeated :processes, :message, 2, "gateway_protocol.ProcessMetadata"
     end
+    add_message "gateway_protocol.DeployResourceRequest" do
+      repeated :resources, :message, 1, "gateway_protocol.Resource"
+    end
+    add_message "gateway_protocol.Resource" do
+      optional :name, :string, 1
+      optional :content, :bytes, 2
+    end
+    add_message "gateway_protocol.DeployResourceResponse" do
+      optional :key, :int64, 1
+      repeated :deployments, :message, 2, "gateway_protocol.Deployment"
+    end
+    add_message "gateway_protocol.Deployment" do
+      oneof :Metadata do
+        optional :process, :message, 1, "gateway_protocol.ProcessMetadata"
+        optional :decision, :message, 2, "gateway_protocol.DecisionMetadata"
+        optional :decisionRequirements, :message, 3, "gateway_protocol.DecisionRequirementsMetadata"
+      end
+    end
     add_message "gateway_protocol.ProcessMetadata" do
       optional :bpmnProcessId, :string, 1
       optional :version, :int32, 2
       optional :processDefinitionKey, :int64, 3
       optional :resourceName, :string, 4
+    end
+    add_message "gateway_protocol.DecisionMetadata" do
+      optional :dmnDecisionId, :string, 1
+      optional :dmnDecisionName, :string, 2
+      optional :version, :int32, 3
+      optional :decisionKey, :int64, 4
+      optional :dmnDecisionRequirementsId, :string, 5
+      optional :decisionRequirementsKey, :int64, 6
+    end
+    add_message "gateway_protocol.DecisionRequirementsMetadata" do
+      optional :dmnDecisionRequirementsId, :string, 1
+      optional :dmnDecisionRequirementsName, :string, 2
+      optional :version, :int32, 3
+      optional :decisionRequirementsKey, :int64, 4
+      optional :resourceName, :string, 5
     end
     add_message "gateway_protocol.FailJobRequest" do
       optional :jobKey, :int64, 1
@@ -176,7 +209,13 @@ module Zeebe::Client::GatewayProtocol
   DeployProcessRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployProcessRequest").msgclass
   ProcessRequestObject = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ProcessRequestObject").msgclass
   DeployProcessResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployProcessResponse").msgclass
+  DeployResourceRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployResourceRequest").msgclass
+  Resource = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Resource").msgclass
+  DeployResourceResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DeployResourceResponse").msgclass
+  Deployment = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.Deployment").msgclass
   ProcessMetadata = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ProcessMetadata").msgclass
+  DecisionMetadata = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DecisionMetadata").msgclass
+  DecisionRequirementsMetadata = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.DecisionRequirementsMetadata").msgclass
   FailJobRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobRequest").msgclass
   FailJobResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.FailJobResponse").msgclass
   ThrowErrorRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("gateway_protocol.ThrowErrorRequest").msgclass

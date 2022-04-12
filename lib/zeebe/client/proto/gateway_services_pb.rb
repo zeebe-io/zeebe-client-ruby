@@ -80,6 +80,17 @@ module Zeebe::Client::GatewayProtocol
       # - the process is invalid (e.g. an event-based gateway has an outgoing sequence flow to a task)
       rpc :DeployProcess, ::Zeebe::Client::GatewayProtocol::DeployProcessRequest, ::Zeebe::Client::GatewayProtocol::DeployProcessResponse
       #
+      # Deploys one or more resources (e.g. processes or decision models) to Zeebe.
+      # Note that this is an atomic call, i.e. either all resources are deployed, or none of them are.
+      #
+      # Errors:
+      # INVALID_ARGUMENT:
+      # - no resources given.
+      # - if at least one resource is invalid. A resource is considered invalid if:
+      # - the content is not deserializable (e.g. detected as BPMN, but it's broken XML)
+      # - the content is invalid (e.g. an event-based gateway has an outgoing sequence flow to a task)
+      rpc :DeployResource, ::Zeebe::Client::GatewayProtocol::DeployResourceRequest, ::Zeebe::Client::GatewayProtocol::DeployResourceResponse
+      #
       # Marks the job as failed; if the retries argument is positive, then the job will be immediately
       # activatable again, and a worker could try again to process it. If it is zero or negative however,
       # an incident will be raised, tagged with the given errorMessage, and the job will not be
