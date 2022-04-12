@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.17.0
+## 0.17.0 (April 12th, 2022)
 
 - add support for [Zeebe 8.0.0](https://github.com/camunda/zeebe/releases/tag/8.0.0)
 
