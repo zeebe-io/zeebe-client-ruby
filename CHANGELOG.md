@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.18.0
+## 0.18.0 (June 5th, 2023)
 
 - add support for [Zeebe 8.1.12](https://github.com/camunda/zeebe/releases/tag/8.1.12)
 - drop EOL Ruby 2.6 and older
