@@ -69,6 +69,18 @@ module Zeebe::Client::GatewayProtocol
       # Behaves similarly to `rpc CreateProcessInstance`, except that a successful response is received when the process completes successfully.
       rpc :CreateProcessInstanceWithResult, ::Zeebe::Client::GatewayProtocol::CreateProcessInstanceWithResultRequest, ::Zeebe::Client::GatewayProtocol::CreateProcessInstanceWithResultResponse
       #
+      # Evaluates a decision. The decision to evaluate can be specified either by
+      # using its unique key (as returned by DeployResource), or using the decision
+      # ID. When using the decision ID, the latest deployed version of the decision
+      # is used.
+      #
+      # Errors:
+      # INVALID_ARGUMENT:
+      # - no decision with the given key exists (if decisionKey was given)
+      # - no decision with the given decision ID exists (if decisionId was given)
+      # - both decision ID and decision KEY were provided, or are missing
+      rpc :EvaluateDecision, ::Zeebe::Client::GatewayProtocol::EvaluateDecisionRequest, ::Zeebe::Client::GatewayProtocol::EvaluateDecisionResponse
+      #
       # Deploys one or more processes to Zeebe. Note that this is an atomic call,
       # i.e. either all processes are deployed, or none of them are.
       #
@@ -171,6 +183,30 @@ module Zeebe::Client::GatewayProtocol
       # - ancestor of element for activation doesn't exist
       # - scope of variable is unknown
       rpc :ModifyProcessInstance, ::Zeebe::Client::GatewayProtocol::ModifyProcessInstanceRequest, ::Zeebe::Client::GatewayProtocol::ModifyProcessInstanceResponse
+      #
+      # Deletes a resource from the state. Once a resource has been deleted it cannot
+      # be recovered. If the resource needs to be available again, a new deployment
+      # of the resource is required.
+      #
+      # Deleting a process will cancel any running instances of this process
+      # definition. New instances of a deleted process are created using
+      # the lastest version that hasn't been deleted. Creating a new
+      # process instance is impossible when all versions have been
+      # deleted.
+      #
+      # Deleting a decision requirement definitions could cause incidents in process
+      # instances referencing these decisions in a business rule task. A decision
+      # will be evaluated with the latest version that hasn't been deleted. If all
+      # versions of a decision have been deleted the evaluation is rejected.
+      #
+      # Errors:
+      # NOT_FOUND:
+      # - No resource exists with the given key
+      #
+      rpc :DeleteResource, ::Zeebe::Client::GatewayProtocol::DeleteResourceRequest, ::Zeebe::Client::GatewayProtocol::DeleteResourceResponse
+      #
+      # Broadcasts a signal.
+      rpc :BroadcastSignal, ::Zeebe::Client::GatewayProtocol::BroadcastSignalRequest, ::Zeebe::Client::GatewayProtocol::BroadcastSignalResponse
     end
 
     Stub = Service.rpc_stub_class

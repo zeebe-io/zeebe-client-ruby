@@ -2,6 +2,7 @@
 
 ## 0.19.0
 
+- add support for [Zeebe 8.2.5](https://github.com/camunda/zeebe/releases/tag/8.2.5)
 - support Ruby 3.2
 - drop EOL Ruby 2.7
 
