@@ -13,7 +13,7 @@ Install the gem:
 Run a Zeebe instance locally:
 
 ```sh
-docker run -it --rm -p 26500:26500 camunda/zeebe:8.0.0
+docker run -it --rm -p 26500:26500 camunda/zeebe:8.1.12
 ```
 
 And then try the available [demo script](examples/demo.rb).
@@ -35,7 +35,7 @@ bundle exec rake zeebe:stop
 To retrieve the latest GRPC proto from the Zeebe repository:
 
 ```sh
-wget -O proto/gateway.proto https://raw.githubusercontent.com/zeebe-io/zeebe/develop/gateway-protocol/src/main/proto/gateway.proto
+wget -O proto/gateway.proto https://raw.githubusercontent.com/camunda/zeebe/develop/gateway-protocol/src/main/proto/gateway.proto
 ```
 
 ## Status

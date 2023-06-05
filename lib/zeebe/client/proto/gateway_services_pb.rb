@@ -156,6 +156,21 @@ module Zeebe::Client::GatewayProtocol
       # INVALID_ARGUMENT:
       # - retries is not greater than 0
       rpc :UpdateJobRetries, ::Zeebe::Client::GatewayProtocol::UpdateJobRetriesRequest, ::Zeebe::Client::GatewayProtocol::UpdateJobRetriesResponse
+      #
+      # Modifies the process instance. This is done by activating and/or terminating specific elements of the instance.
+      #
+      # Errors:
+      # NOT_FOUND:
+      # - no process instance exists with the given key
+      #
+      # FAILED_PRECONDITION:
+      # - trying to activate element inside of a multi-instance
+      #
+      # INVALID_ARGUMENT:
+      # - activating or terminating unknown element
+      # - ancestor of element for activation doesn't exist
+      # - scope of variable is unknown
+      rpc :ModifyProcessInstance, ::Zeebe::Client::GatewayProtocol::ModifyProcessInstanceRequest, ::Zeebe::Client::GatewayProtocol::ModifyProcessInstanceResponse
     end
 
     Stub = Service.rpc_stub_class
