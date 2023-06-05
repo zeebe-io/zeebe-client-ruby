@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.19.0
+## 0.19.0 (June 5th, 2023)
 
 - add support for [Zeebe 8.2.5](https://github.com/camunda/zeebe/releases/tag/8.2.5)
 - support Ruby 3.2
