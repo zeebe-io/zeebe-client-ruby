@@ -3,6 +3,7 @@
 ## 0.20.0 (January 19th, 2024)
 
 - add support for [Zeebe 8.4.0](https://github.com/camunda/zeebe/releases/tag/8.4.0)
+- support Ruby 3.3
 
 ## 0.19.0 (June 5th, 2023)
 
