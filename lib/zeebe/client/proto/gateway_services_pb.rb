@@ -26,6 +26,15 @@ module Zeebe::Client::GatewayProtocol
       # - maxJobsToActivate is less than 1
       rpc :ActivateJobs, ::Zeebe::Client::GatewayProtocol::ActivateJobsRequest, stream(::Zeebe::Client::GatewayProtocol::ActivateJobsResponse)
       #
+      # Registers client to a job stream that will stream jobs back to the client as
+      # they become activatable.
+      #
+      # Errors:
+      # INVALID_ARGUMENT:
+      # - type is blank (empty string, null)
+      # - timeout less than 1
+      rpc :StreamActivatedJobs, ::Zeebe::Client::GatewayProtocol::StreamActivatedJobsRequest, stream(::Zeebe::Client::GatewayProtocol::ActivatedJob)
+      #
       # Cancels a running process instance
       #
       # Errors:
@@ -96,11 +105,17 @@ module Zeebe::Client::GatewayProtocol
       # Note that this is an atomic call, i.e. either all resources are deployed, or none of them are.
       #
       # Errors:
+      # PERMISSION_DENIED:
+      # - if a deployment to an unauthorized tenant is performed
       # INVALID_ARGUMENT:
       # - no resources given.
       # - if at least one resource is invalid. A resource is considered invalid if:
       # - the content is not deserializable (e.g. detected as BPMN, but it's broken XML)
       # - the content is invalid (e.g. an event-based gateway has an outgoing sequence flow to a task)
+      # - if multi-tenancy is enabled, and:
+      # - a tenant id is not provided
+      # - a tenant id with an invalid format is provided
+      # - if multi-tenancy is disabled and a tenant id is provided
       rpc :DeployResource, ::Zeebe::Client::GatewayProtocol::DeployResourceRequest, ::Zeebe::Client::GatewayProtocol::DeployResourceResponse
       #
       # Marks the job as failed; if the retries argument is positive, then the job will be immediately
@@ -183,6 +198,40 @@ module Zeebe::Client::GatewayProtocol
       # - ancestor of element for activation doesn't exist
       # - scope of variable is unknown
       rpc :ModifyProcessInstance, ::Zeebe::Client::GatewayProtocol::ModifyProcessInstanceRequest, ::Zeebe::Client::GatewayProtocol::ModifyProcessInstanceResponse
+      #
+      # Migrates the process instance to the specified process definition.
+      # In simple terms, this is handled by updating the active element's process.
+      #
+      # Errors:
+      # NOT_FOUND:
+      # - no process instance exists with the given key, or it is not active
+      # - no process definition exists with the given target definition key
+      # - no process instance exists with the given key for the tenants the user is authorized to work with.
+      #
+      # FAILED_PRECONDITION:
+      # - not all active elements in the given process instance are mapped to the elements in the target process definition
+      # - a mapping instruction changes the type of an element or event
+      # - a mapping instruction refers to an unsupported element (i.e. some elements will be supported later on)
+      # - a mapping instruction refers to element in unsupported scenarios.
+      # (i.e. migration is not supported when process instance or target process elements contains event subscriptions)
+      #
+      # INVALID_ARGUMENT:
+      # - A `sourceElementId` does not refer to an element in the process instance's process definition
+      # - A `targetElementId` does not refer to an element in the target process definition
+      # - A `sourceElementId` is mapped by multiple mapping instructions.
+      # For example, the engine cannot determine how to migrate a process instance when the instructions are: [A->B, A->C].
+      rpc :MigrateProcessInstance, ::Zeebe::Client::GatewayProtocol::MigrateProcessInstanceRequest, ::Zeebe::Client::GatewayProtocol::MigrateProcessInstanceResponse
+      #
+      # Updates the deadline of a job using the timeout (in ms) provided. This can be used
+      # for extending or shortening the job deadline.
+      #
+      # Errors:
+      # NOT_FOUND:
+      # - no job exists with the given key
+      #
+      # INVALID_STATE:
+      # - no deadline exists for the given job key
+      rpc :UpdateJobTimeout, ::Zeebe::Client::GatewayProtocol::UpdateJobTimeoutRequest, ::Zeebe::Client::GatewayProtocol::UpdateJobTimeoutResponse
       #
       # Deletes a resource from the state. Once a resource has been deleted it cannot
       # be recovered. If the resource needs to be available again, a new deployment
